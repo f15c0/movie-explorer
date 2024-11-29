@@ -8,6 +8,10 @@ const MovieCard = ({ movie }) => {
     navigate(`/movie/${movie.id}`);
   };
 
+  if (!movie.poster_path) {
+    return null;
+  }
+
   return (
     <div
       onClick={handleClick}
@@ -21,12 +25,14 @@ const MovieCard = ({ movie }) => {
       <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-200">
         <h3 className="text-white font-semibold text-lg">{movie.title}</h3>
         <p className="text-gray-300 text-sm">
-          {new Date(movie.release_date).getFullYear()}
+          {movie.release_date
+            ? new Date(movie.release_date).getFullYear()
+            : "N/A"}
         </p>
         <div className="flex items-center mt-1">
           <span className="text-yellow-400">★</span>
           <span className="text-white ml-1">
-            {movie.vote_average.toFixed(1)}
+            {movie.vote_average ? movie.vote_average.toFixed(1) : "N/A"}
           </span>
         </div>
       </div>
