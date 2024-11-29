@@ -33,7 +33,9 @@ export const fetchMovieDetails = async (movieId) => {
 export const searchMovies = async (query) => {
   try {
     const response = await fetch(
-      `${BASE_URL}/search/movie?query=${encodeURIComponent(query)}`,
+      `${BASE_URL}/search/movie?query=${encodeURIComponent(
+        query,
+      )}&language=en-US&page=1`,
       options,
     );
     const data = await response.json();
